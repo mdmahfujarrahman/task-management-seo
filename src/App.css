@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #006EB6;
+  --secondary:#00B5FF;
+  --tertiary: #FFE700;
+  --quaternary: #D21010;
+}
+
+/* utility classes */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+
+ol,
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+div,
+button,
+input {
+  font-family: 'Poppins', sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+  padding: 3px;
+  border-radius: 10px;
+  height: 5px;
+  background-color: #F5F5F5;
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar-thumb {
+  width: 2px;
+  padding: 5px;
+  border-radius: 10px;
+  background-color: var(--primary)
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+input[type=number] {
+  appearance: textfield;
+}
+
+/* Tailwind class Sort */
+
+.flexCenter{
+  @apply flex items-center justify-center;
+}
+
+
+/* custome class */
+
+.mainlayouts {
+  padding: 16px !important;
+  height: calc(100vh - 16px) !important;
+}
