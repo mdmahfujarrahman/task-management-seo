@@ -1,10 +1,10 @@
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import { storage } from "../../lib/firebase";
 
-export const uploadMultipleFileUpload = (
+export const uploadMultipleFile = (
+    id,
     file,
-    fileIndex,
-    setPercentUpload,
+    setPercentUpload
     // dispatch,
     // isOnboard
 ) => {
@@ -19,11 +19,16 @@ export const uploadMultipleFileUpload = (
             )}%`;
             setPercentUpload((prevData) => {
                 const updatedData = [...prevData];
+                const fileIndex = updatedData.findIndex(
+                    (item) => item.id === id
+                );
                 updatedData[fileIndex] = {
-                    name: file.name,
-                    size: formatFileSize(file.size),
-                    progress: prog,
-                    task: uploadTask,
+                    ...updatedData[fileIndex],
+                    progress: {
+                        ...updatedData[fileIndex].progress,
+                        progress: prog,
+                        task: uploadTask,
+                    },
                 };
                 return updatedData;
             });
@@ -31,16 +36,29 @@ export const uploadMultipleFileUpload = (
         (error) => console.log(error),
         () => {
             getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                // condition for onboard  and addproduct image upload
-
-                console.log("ADDIMAGES", downloadURL);
+                setPercentUpload((prevData) => {
+                    const updatedData = [...prevData];
+                    const fileIndex = updatedData.findIndex(
+                        (item) => item.id === id
+                    );
+                    updatedData[fileIndex] = {
+                        ...updatedData[fileIndex],
+                        uploadLink: downloadURL,
+                    };
+                    return updatedData;
+                });
             });
 
             setTimeout(() => {
                 setPercentUpload((prevData) => {
                     const updatedData = [...prevData];
-                    // Remove the uploaded file from the array
-                    updatedData.splice(fileIndex, 1);
+                    const fileIndex = updatedData.findIndex(
+                        (item) => item.id === id
+                    );
+                    updatedData[fileIndex] = {
+                        ...updatedData[fileIndex],
+                        isUploaded: true,
+                    };
                     return updatedData;
                 });
             }, 1000);

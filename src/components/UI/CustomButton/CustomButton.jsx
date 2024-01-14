@@ -1,6 +1,11 @@
-const CustomButton = ({ className, type, onClick, children }) => {
+const CustomButton = ({ className, type, onClick, children, disabled }) => {
     return (
-        <button className={className} type={type} onClick={onClick}>
+        <button
+            disabled={disabled}
+            className={className}
+            type={type}
+            onClick={onClick}
+        >
             {children}
         </button>
     );
