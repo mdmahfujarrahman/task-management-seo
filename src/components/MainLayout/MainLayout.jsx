@@ -1,6 +1,7 @@
 import { clsx } from "clsx";
 import { layoutWidth } from "../../helper/tailwindHelper";
 import TaskContainer from "../TaskContainer/TaskContainer";
+import { TaskDatas } from "../../constant";
 
 const MainLayout = () => {
     return (
@@ -8,24 +9,15 @@ const MainLayout = () => {
             <div className="w-full mainlayouts border-[1px] overflow-hidden overflow-x-scroll border-t-2 ">
                 <div
                     className={clsx(
-                        `flex flex-row h-screen gap-3  overflow-x-auto`
+                        `flex flex-row mb-10 gap-3  overflow-x-auto`
                     )}
                     style={{
-                        width: layoutWidth(5, 360),
+                        width: layoutWidth(TaskDatas?.length, 360),
                     }}
                 >
-                    <TaskContainer />
-                    <TaskContainer />
-                    <TaskContainer />
-                    <TaskContainer />
-                    <TaskContainer />
-                    {/* <TaskContainer /> */}
-                    {/* <TaskContainer /> */}
-                    {/* <TaskContainer /> */}
-                    {/* <TaskContainer />
-            <TaskContainer />
-            <TaskContainer />
-            <TaskContainer /> */}
+                    {TaskDatas.map((task) => (
+                        <TaskContainer key={task?.id} task={task} />
+                    ))}
                 </div>
             </div>
         </div>

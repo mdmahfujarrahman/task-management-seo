@@ -2,7 +2,7 @@ import { AppIcons } from "../../assets/icon";
 import { profileImages } from "../../assets/image";
 import { TaskUser } from "../../constant";
 
-const TaskCard = () => {
+const TaskCard = ({ singleTask }) => {
     return (
         <div className="w-full flex flex-col bg-white rounded-sm p-2">
             <div className="flex items-center justify-between">
@@ -27,7 +27,7 @@ const TaskCard = () => {
                         className="h-4 w-4 mr-1"
                         alt="stake icon"
                     />
-                    <p className="text-sm">Lorem ipsum dolor sit amet con..</p>
+                    <p className="text-sm">{singleTask?.title}</p>
                 </div>
                 <div className="flex items-center justify-center bg-graybg w-14 h-6 p-2 rounded-sm">
                     <img
@@ -72,7 +72,7 @@ const TaskCard = () => {
                         alt="chatIcon"
                         className="h-4 w-4"
                     />
-                    <p className="text-sm">15</p>
+                    <p className="text-sm">{singleTask?.attachment?.length}</p>
                 </div>
                 <div className="flex items-center gap-1">
                     <img
