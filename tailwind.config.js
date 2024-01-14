@@ -10,6 +10,7 @@ export default {
                 quaternary: "#D21010",
                 quinary: "#F2F4F7",
                 graybg: "#E8EEF3",
+                graytext: "#A8B2BB",
             },
         },
     },

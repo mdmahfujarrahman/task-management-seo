@@ -2,7 +2,7 @@ import { AppIcons } from "../../assets/icon";
 import { profileImages } from "../../assets/image";
 import { TaskUser } from "../../constant";
 
-const TaskCard = ({ singleTask }) => {
+const TaskCard = ({ singleTask, handleOpen }) => {
     return (
         <div className="w-full flex flex-col bg-white rounded-sm p-2">
             <div className="flex items-center justify-between">
@@ -70,7 +70,8 @@ const TaskCard = ({ singleTask }) => {
                     <img
                         src={AppIcons.attachmentIcon}
                         alt="chatIcon"
-                        className="h-4 w-4"
+                        className="h-4 w-4 cursor-pointer"
+                        onClick={() => handleOpen(singleTask)}
                     />
                     <p className="text-sm">{singleTask?.attachment?.length}</p>
                 </div>
